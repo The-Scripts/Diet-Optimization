@@ -1,0 +1,15 @@
+SELECT users.FirstName, users.LastName, params.Gender, params.Age, params.Weight, params.Height FROM users, params WHERE users.UserID = params.UserID;
+
+SELECT params.Goal, users.Nickname, SUM(consumed_food.Calories) AS "Calories" FROM params, users, consumed_food WHERE users.UserID = params.UserID AND users.UserID = consumed_food.UserID GROUP BY users.Nickname;
+
+SELECT * FROM users WHERE users.Phone IS NOT NULL;
+
+SELECT users.FirstName, users.LastName, params.Age FROM users, params WHERE users.UserID = params.UserID ORDER BY params.Age ASC;
+
+SELECT AVG(params.Weight) AS "Average Weight Of Users" FROM params, users WHERE users.UserID = params.UserID;
+
+SELECT MIN(params.Height) AS "Minimal Height Of Users", MAX(params.Height) AS "Maximal Height Of Users" FROM params, users WHERE users.UserID = params.UserID;
+
+SELECT users.Nickname, consumed_food.* FROM users, consumed_food WHERE users.UserID = consumed_food.UserID AND consumed_food.Date BETWEEN "2022-01-01" AND "2022-08-01";
+
+SELECT users.FirstName, SUM(consumed_food.Calories) AS "Sum Of Calories", SUM(consumed_food.Proteins) AS "Sum Of Proteins", SUM(consumed_food.Carbs) AS "Sum Of Carbs" FROM users, consumed_food WHERE users.UserID = consumed_food.UserID GROUP BY users.FirstName ORDER BY SUM(consumed_food.Calories) ASC;
